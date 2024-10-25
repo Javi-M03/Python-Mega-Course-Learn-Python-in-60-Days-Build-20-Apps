@@ -1,5 +1,3 @@
-clean
-prepare
-play
 Create
 Delete
+prepare
