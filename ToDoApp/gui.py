@@ -3,8 +3,8 @@ import FreeSimpleGUI as sg
 import time
 import os
 
-if not os.path.exists('./ToDoApp/todos.txt'):   
-    with open("./ToDoApp/todos.txt","w") as file:
+if not os.path.exists('./todos.txt'):   
+    with open("./todos.txt","w") as file:
         pass 
 
 sg.theme("DarkPurple4")
