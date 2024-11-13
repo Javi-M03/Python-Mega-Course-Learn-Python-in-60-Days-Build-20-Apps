@@ -1,10 +1,10 @@
-import requests, selectorlib,smtplib,ssl, time, streamlit as st,datetime
+import requests, selectorlib,sqlite3
+from datetime import datetime
 
-
-
+connection = sqlite3.connect("data.db")
 
 URL = "https://programmer100.pythonanywhere.com/"
-now = str(datetime.datetime.now())
+
 
 def scrape(url):
     response= requests.get(url)
@@ -17,15 +17,19 @@ def extract(source):
     return value
 
 def write_temp(extracted):
-    with open("data.txt","a") as file:
-        file.write(extracted + '\n')
+    now = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    cursor = connection.cursor()
+    print(extracted)
+    print(now)
+    cursor.execute("INSERT INTO temperatures VALUES(?,?)", (extracted,now))
+    connection.commit()
 
 
 
 if __name__ == "__main__":
     scraped = scrape(URL)
     extracted = extract(scraped)
-    extracted = now + ", " + extracted  
+    extracted = extracted  
     write_temp(extracted)
     print(extracted)
     
