@@ -1,1 +1,8 @@
-<h1>Menu Item</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="pt-1">{{ item.meal }}</h1>
+    <p>{{ item.description }}</p>
+    <p>{{ item.price }}</p>
+</div>
+{% endblock content %}
